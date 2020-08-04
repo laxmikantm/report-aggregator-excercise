@@ -75,7 +75,9 @@ public class ConsolidateReports {
             Utils.FINAL_STATUS = "PASS";
         } else if (ip.equals(TEST_STATUS_MODEL.RESULT_FAIL.getItem())) {
             Utils.FINAL_STATUS = "FAIL";
-        } else if(!ip.contains(TEST_STATUS_MODEL.START)){
+        } else if (ip.contains(TEST_STATUS_MODEL.START)) {
+            Utils.TEST_SUITE_NAME = ip.split(TEST_STATUS_MODEL.START.getItem())[1];
+        }else if(!ip.contains(TEST_STATUS_MODEL.START)){
             errorMsgsList.add(ip);
         }
     }
@@ -94,9 +96,6 @@ public class ConsolidateReports {
         AtomicInteger LOCAL_TEST_STEP_COUNT = new AtomicInteger();
 
         value.forEach(ip -> {
-            if (ip.contains(TEST_STATUS_MODEL.START)) {
-                Utils.TEST_SUITE_NAME = ip.split(TEST_STATUS_MODEL.START.getItem())[1];
-            } else{
                 if (ip.contains(TEST_STATUS_MODEL.RUN)) {
                     Utils.TEST_PACK_COUNT++;
                 } else if (ip.contains(TEST_STATUS_MODEL.PASS)) {
@@ -115,7 +114,6 @@ public class ConsolidateReports {
                     LOCAL_TEST_STEP_COUNT.getAndIncrement();
                     extractExeTimeAndIncrement(ip);
                 }//end else if
-            }//end else
 
             passFailTable.put(TEST_COUNTS_MODEL.PASS_COUNT.getItem(), LOCAL_PASS_COUNT.intValue() );
             passFailTable.put(TEST_COUNTS_MODEL.FAIL_COUNT.getItem(),LOCAL_FAIL_COUNT.intValue() );
