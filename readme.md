@@ -1,6 +1,5 @@
 # Simple Test Report Aggregator 
 
-Foobar is a Python library for dealing with word pluralization.
 
 ## Assumptions:
 
@@ -41,7 +40,6 @@ And testing functions in isolation will become possible.
 4. Handle Blanks and unexpected inputs
 5. Fix commandline issue so that tests can be triggered from commandline
 
-Thanks a lot
 
 
 ## Run Illustration
